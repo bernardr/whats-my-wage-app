@@ -28,10 +28,21 @@
         <a href="#" class="icon icon-refresh pull-right"></a>
     </header>
     <div class="content">
-      <div class="question-prompt">{{prompt}}</div>
+      <div class="question-prompt">{{{prompt}}}</div>
       {{#each choices}}
         <a href="{{next}}" class="btn btn-block answer" data-question-id="{{../id}}" data-value="{{value}}">{{text}}</a>
       {{/each}}
+      <div class="definitions"></div>
+      <div id="hourly-minimum-compensation" class="modal">
+        <header class="bar bar-nav">
+          <a class="icon icon-close pull-right" href="#hourly-minimum-compensation"></a>
+          <h1 class="title">hourly minimum compensation</h1>
+        </header>
+
+        <div class="content">
+          <p class="content-padded">hourly minimum compensation</p>
+        </div>
+      </div>
     </div>
   </script>
 
@@ -53,7 +64,24 @@
         </ul>
         <div class="center question-prompt">Are you making less than this per hour? You may be a victim of wage theft. Please take action and:</div>
         <a href="http://www.seattle.gov/civilrights/labor-standards/wage-theft" class="btn btn-block btn-contrast-red">Report It!</a>
+        
+        <div class="definitions"></div>
     </div>
+  </script>
+
+  <script id="definitions-tpl" type="text/template">
+    {{#each this}}
+    <div id="{{id}}" class="modal">
+      <header class="bar bar-nav">
+        <a class="icon icon-close pull-right" href="#{{id}}"></a>
+        <h1 class="title">{{text}}</h1>
+      </header>
+
+      <div class="content">
+        <p class="content-padded">{{text}}</p>
+      </div>
+    </div>
+    {{/each}}
   </script>
 
   <script src="cordova.js"></script>
@@ -69,6 +97,8 @@
   <script src="js/services/memory/QuestionService.js"></script>
   <script src="js/services/memory/AnswerService.js"></script>
   <script src="js/services/memory/WageService.js"></script>
+  <script src="js/services/memory/DefinitionService.js"></script>
+  <script src="js/DefinitionsView.js"></script>
   <script src="js/HomeView.js"></script>
   <script src="js/QuestionView.js"></script>
   <script src="js/ResultView.js"></script>

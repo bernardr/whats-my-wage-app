@@ -35,7 +35,7 @@ var QuestionService = function() {
           {"next": "#results", "value": "yes", "text": "Yes"},
           {"next": "#results", "value": "no", "text": "No"}
         ]},
-        {"id": "min-compensation", "summary":"Minimum Compensation", "prompt":"Does your employer provide minimum compensation?", choices:[
+        {"id": "min-compensation", "summary":"Minimum Compensation", "prompt":"Does your employer provide <a class=\"btn\" href=\"#hourly-minimum-compensation\">minimum compensation</a>?", choices:[
           {"next": "#results", "value": "yes", "text": "Yes"},
           {"next": "#results", "value": "no", "text": "No"}
         ]},
