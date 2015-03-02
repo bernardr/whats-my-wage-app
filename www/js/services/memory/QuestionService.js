@@ -14,7 +14,6 @@ var QuestionService = function() {
         for (var i=0; i < l; i++) {
             if (questions[i].id == id) {
                 question = questions[i];
-                console.log("Returning question: " + question);
                 break;
             }
         }
@@ -25,19 +24,25 @@ var QuestionService = function() {
     var questions = [
         {"id": "work-seattle", "summary":"Employed in Seattle", "prompt":"Is your place of employment located in Seattle?", choices:[
           {"next": "#question/number-employees", "value": "yes", "text": "Yes"},
-          {"next": "#results", "value": "no", "text": "No"}
+          {"next": "#results", "value": "no", "text": "No"},
+          {"next": "#note/part-time-seattle", "value": "yes", "text": "Sometimes"},
+          {"next": "#question/methods-for-determining-in-seattle", "value": "", "text": "I Don't Know"}
         ]},
         {"id": "number-employees", "summary":"Number of Employees", "prompt":"How many people work at your employer across the USA?", choices:[
-          {"next": "#question/min-compensation", "value": "1-500", "text": "1 - 500"},
+          {"next": "#question/health-insurance", "value": "1-500", "text": "1 - 500"},
           {"next": "#question/medical-benefits", "value": ">500", "text": "Over 500"}
         ]},
         {"id": "medical-benefits", "summary":"Medical Benefits", "prompt":"Does your employer provide medical benefits to you?", choices:[
           {"next": "#results", "value": "yes", "text": "Yes"},
           {"next": "#results", "value": "no", "text": "No"}
         ]},
-        {"id": "min-compensation", "summary":"Minimum Compensation", "prompt":"Does your employer provide <a class=\"btn\" href=\"#hourly-minimum-compensation\">minimum compensation</a>?", choices:[
-          {"next": "#results", "value": "yes", "text": "Yes"},
-          {"next": "#results", "value": "no", "text": "No"}
+        {"id": "health-insurance", "summary":"Health Insurance", "prompt":"Does your employer pay for any of your health insurance?", choices:[
+          {"next": "#question/tips", "value": "yes", "text": "Yes"},
+          {"next": "#question/tips", "value": "no", "text": "No"}
+        ]},
+        {"id": "tips", "summary":"Tips", "prompt":"Do you receive tips?", choices:[
+          {"next": "#note/minimum-compensation", "value": "yes", "text": "Yes"},
+          {"next": "#note/minimum-compensation", "value": "no", "text": "No"}
         ]},
     ];
 

@@ -63,9 +63,21 @@
             {{/each}}
         </ul>
         <div class="center question-prompt">Are you making less than this per hour? You may be a victim of wage theft. Please take action and:</div>
-        <a href="http://www.seattle.gov/civilrights/labor-standards/wage-theft" class="btn btn-block btn-contrast-red">Report It!</a>
-        
+        <a href="http://www.seattle.gov/civilrights/labor-standards/wage-theft" class="btn btn-block btn-negative">Report It!</a>
         <div class="definitions"></div>
+    </div>
+  </script>
+
+  <script id="note-tpl" type="text/template">
+    <header class="bar bar-nav">
+        <h1 class="title">{{title}}</h1>
+        <a href="#" class="icon icon-refresh pull-right"></a>
+    </header>
+    <div class="content">
+        {{#each text}}
+        <p>{{this}}</p>
+        {{/each}}
+        <a href="{{next}}" class="btn btn-block btn-contrast">Continue</a>
     </div>
   </script>
 
@@ -98,6 +110,8 @@
   <script src="js/services/memory/AnswerService.js"></script>
   <script src="js/services/memory/WageService.js"></script>
   <script src="js/services/memory/DefinitionService.js"></script>
+  <script src="js/services/memory/NoteService.js"></script>
+  <script src="js/NoteView.js"></script>
   <script src="js/DefinitionsView.js"></script>
   <script src="js/HomeView.js"></script>
   <script src="js/QuestionView.js"></script>
