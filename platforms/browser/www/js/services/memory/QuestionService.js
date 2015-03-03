@@ -28,6 +28,13 @@ var QuestionService = function() {
           {"next": "#note/part-time-seattle", "value": "yes", "text": "Sometimes"},
           {"next": "#question/methods-for-determining-in-seattle", "value": "", "text": "I Don't Know"}
         ]},
+        {"id": "methods-for-determining-in-seattle", "summary":"Employed in Seattle?", "prompt":"Choose one of these methods to determine if you are employed in Seattle?", choices:[
+          {"next": "#employer-determination/nearby", "text": "Choose from Nearest 20 Businesses"},
+          {"next": "#employer-determination/address", "text": "Enter The Address Where You Work"},
+          {"next": "#employer-determination/business-name", "text": "Enter Business Name"},
+          {"next": "#employer-determination/top-50", "text": "Choose From Top 50 Employers In The State"},
+          {"next": "#employer-determination/map", "text": "Indicate Where You Work On A Map"},
+        ]},
         {"id": "number-employees", "summary":"Number of Employees", "prompt":"How many people work at your employer across the USA?", choices:[
           {"next": "#question/health-insurance", "value": "1-500", "text": "1 - 500"},
           {"next": "#question/medical-benefits", "value": ">500", "text": "Over 500"}

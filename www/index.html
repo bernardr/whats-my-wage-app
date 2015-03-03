@@ -16,7 +16,8 @@
   <script id="home-tpl" type="text/template">
     <div class="content-padded">
       <h1 class="center app-title">Minimum Wage Calculator</h1>
-      <a href="#question/work-seattle" class="btn btn-block start-survey">Start</a>
+      <a href="#question/work-seattle" class="btn btn-block start-survey">Start Survey</a>
+      <a href="https://www.municode.com/library/wa/seattle/codes/municipal_code?nodeId=TIT14HURI_CH14.19MIWAMICORAEMPEWOSE" class="btn btn-block btn-contrast">Full Text of the Ordinance</a>
       <h5 class="center">Presented By:</h5>
       <a href="http://workingwa.org"><img class="working-wa-logo center" src="img/working-wa-logo.png"></img></a>
     </div>
@@ -64,7 +65,9 @@
         </ul>
         <div class="center question-prompt">Are you making less than this per hour? You may be a victim of wage theft. Please take action and:</div>
         <a href="http://www.seattle.gov/civilrights/labor-standards/wage-theft" class="btn btn-block btn-negative">Report It!</a>
-        <div class="definitions"></div>
+        <div class="center question-prompt">Further Reading:</div>
+        <a href="https://www.municode.com/library/wa/seattle/codes/municipal_code?nodeId=TIT14HURI_CH14.19MIWAMICORAEMPEWOSE" class="btn btn-block btn-contrast">Full Text of the Ordinance</a>
+        <a href="http://www.seattle.gov/civilrights/labor-standards" class="btn btn-block btn-contrast">Office of Labor Standards</a>
     </div>
   </script>
 
@@ -77,9 +80,9 @@
         {{#each text}}
         <p>{{this}}</p>
         {{/each}}
-        <a href="{{next}}" class="btn btn-block btn-contrast">Continue</a>
+        <a href="{{next}}" class="btn btn-block btn-contrast">Continue Survey</a>
         <div class="center question-prompt">Want to read the relevant part of the ordinance yourself? Check out section {{ordinance.section}} of:</div>
-        <a href="{{ordinance.href}}" class="btn btn-block btn-negative">This Part of The Ordinance</a>
+        <a href="{{ordinance.href}}" class="btn btn-block btn-contrast">This Part of The Ordinance</a>
     </div>
   </script>
 
