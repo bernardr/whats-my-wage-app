@@ -16,7 +16,8 @@
   <script id="home-tpl" type="text/template">
     <div class="content-padded">
       <h1 class="center app-title">Minimum Wage Calculator</h1>
-      <a href="#question/work-seattle" class="btn btn-block start-survey">Start</a>
+      <a href="#question/work-seattle" class="btn btn-block start-survey">Start Survey</a>
+      <a href="https://www.municode.com/library/wa/seattle/codes/municipal_code?nodeId=TIT14HURI_CH14.19MIWAMICORAEMPEWOSE_14.19.020EMSEEMSCDE" class="btn btn-block btn-contrast">Full Text of the Ordinance</a>
       <h5 class="center">Presented By:</h5>
       <a href="http://workingwa.org"><img class="working-wa-logo center" src="img/working-wa-logo.png"></img></a>
     </div>
@@ -28,10 +29,21 @@
         <a href="#" class="icon icon-refresh pull-right"></a>
     </header>
     <div class="content">
-      <div class="question-prompt">{{prompt}}</div>
+      <div class="question-prompt">{{{prompt}}}</div>
       {{#each choices}}
         <a href="{{next}}" class="btn btn-block answer" data-question-id="{{../id}}" data-value="{{value}}">{{text}}</a>
       {{/each}}
+      <div class="definitions"></div>
+      <div id="hourly-minimum-compensation" class="modal">
+        <header class="bar bar-nav">
+          <a class="icon icon-close pull-right" href="#hourly-minimum-compensation"></a>
+          <h1 class="title">hourly minimum compensation</h1>
+        </header>
+
+        <div class="content">
+          <p class="content-padded">hourly minimum compensation</p>
+        </div>
+      </div>
     </div>
   </script>
 
@@ -52,8 +64,41 @@
             {{/each}}
         </ul>
         <div class="center question-prompt">Are you making less than this per hour? You may be a victim of wage theft. Please take action and:</div>
-        <a href="http://www.seattle.gov/civilrights/labor-standards/wage-theft" class="btn btn-block btn-contrast-red">Report It!</a>
+        <a href="http://www.seattle.gov/civilrights/labor-standards/wage-theft" class="btn btn-block btn-negative">Report It!</a>
+        <div class="center question-prompt">Further Reading:</div>
+        <a href="https://www.municode.com/library/wa/seattle/codes/municipal_code?nodeId=TIT14HURI_CH14.19MIWAMICORAEMPEWOSE" class="btn btn-block btn-contrast">Full Text of the Ordinance</a>
+        <a href="http://www.seattle.gov/civilrights/labor-standards" class="btn btn-block btn-contrast">Office of Labor Standards</a>
     </div>
+  </script>
+
+  <script id="note-tpl" type="text/template">
+    <header class="bar bar-nav">
+        <h1 class="title">{{title}}</h1>
+        <a href="#" class="icon icon-refresh pull-right"></a>
+    </header>
+    <div class="content">
+        {{#each text}}
+        <p>{{this}}</p>
+        {{/each}}
+        <a href="{{next}}" class="btn btn-block btn-contrast">Continue Survey</a>
+        <div class="center question-prompt">Want to read the relevant part of the ordinance yourself? Check out section {{ordinance.section}} of:</div>
+        <a href="{{ordinance.href}}" class="btn btn-block btn-contrast">This Part of The Ordinance</a>
+    </div>
+  </script>
+
+  <script id="definitions-tpl" type="text/template">
+    {{#each this}}
+    <div id="{{id}}" class="modal">
+      <header class="bar bar-nav">
+        <a class="icon icon-close pull-right" href="#{{id}}"></a>
+        <h1 class="title">{{text}}</h1>
+      </header>
+
+      <div class="content">
+        <p class="content-padded">{{text}}</p>
+      </div>
+    </div>
+    {{/each}}
   </script>
 
   <script src="cordova.js"></script>
@@ -69,6 +114,10 @@
   <script src="js/services/memory/QuestionService.js"></script>
   <script src="js/services/memory/AnswerService.js"></script>
   <script src="js/services/memory/WageService.js"></script>
+  <script src="js/services/memory/DefinitionService.js"></script>
+  <script src="js/services/memory/NoteService.js"></script>
+  <script src="js/NoteView.js"></script>
+  <script src="js/DefinitionsView.js"></script>
   <script src="js/HomeView.js"></script>
   <script src="js/QuestionView.js"></script>
   <script src="js/ResultView.js"></script>

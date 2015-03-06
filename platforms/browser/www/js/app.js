@@ -5,14 +5,18 @@
     HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
     QuestionView.prototype.template = Handlebars.compile($("#question-tpl").html());
     ResultView.prototype.template = Handlebars.compile($("#result-tpl").html());
+    DefinitionsView.prototype.template = Handlebars.compile($('#definitions-tpl').html());
+    NoteView.prototype.template = Handlebars.compile($('#note-tpl').html());
 
     var slider = new PageSlider($('body'));
 
     var questionService = new QuestionService();
     var answerService = new AnswerService();
     var wageService = new WageService();
+    var definitionService = new DefinitionService();
+    var noteService = new NoteService();
 
-    $.when([questionService.initialize(), answerService.initialize(), wageService.initialize()]).done(function() {
+    $.when([questionService.initialize(), answerService.initialize(), wageService.initialize(), definitionService.initialize(), noteService.initialize()]).done(function() {
       router.addRoute('', function() {
           slider.slidePage(new HomeView(answerService).render().$el);
       });
@@ -32,7 +36,13 @@
 
       router.addRoute('question/:id', function(id) {
           questionService.findById(id).done(function(question) {
-            slider.slidePage(new QuestionView(question, answerService).render().$el);
+            slider.slidePage(new QuestionView(question, answerService, definitionService).render().$el);
+          });
+      });
+
+      router.addRoute('note/:id', function(id) {
+          noteService.findById(id).done(function(note) {
+            slider.slidePage(new NoteView(note).render().$el);
           });
       });
 
