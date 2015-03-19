@@ -8,6 +8,7 @@ For calculating the minimum wage
 * PDF of the Ordinance: http://www.seattle.gov/council/issues/minimumwage/attachments/Ord_124490.pdf
 * Mayor Murray's summary: http://murray.seattle.gov/minimumwage/
 * City Council Committee's summary: http://www.seattle.gov/council/issues/MinimumWage/default.html
+* Rulings: http://www.seattle.gov/Documents/Departments/CivilRights/socr-chapter_90.pdf
 
 # Building Releases
 
