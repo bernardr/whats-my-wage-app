@@ -43,6 +43,12 @@
       router.addRoute('note/:id', function(id) {
           noteService.findById(id).done(function(note) {
             slider.slidePage(new NoteView(note).render().$el);
+
+            $('.ordinance-info').readmore({
+              collapsedHeight: $('.ordinance-info .explanation').outerHeight(),
+              moreLink: "<button class=\"btn btn-block btn-primary btn-contrast\">Show Ordinance Text</button>",
+              lessLink: "<button class=\"btn btn-block btn-primary btn-contrast\">Hide Ordinance Text</button>"
+            });
           });
       });
 
