@@ -47,7 +47,7 @@ var NoteService = function() {
           },
           "next":"#results",
           "skip": function(answers) {
-            return answers["health-insurance"] == "yes" || answers["tips"] == "yes";
+            return answers["health-insurance"] != "yes" && answers["tips"] != "yes";
           }
         },
     ];
