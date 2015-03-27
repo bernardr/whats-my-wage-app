@@ -10,7 +10,7 @@ var QuestionService = function() {
           deferred.resolve();
         }
 
-        $.getJSON("http://minimum-wage-service.herokuapp.com/api/v1/survey/question", successCallback.bind(this));
+        $.getJSON("http://whats-my-wage-server.herokuapp.com/api/v1/survey/question", successCallback.bind(this));
         return deferred.promise();
     }
 
