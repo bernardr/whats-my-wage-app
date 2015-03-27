@@ -16,7 +16,8 @@
     var definitionService = new DefinitionService();
     var noteService = new NoteService();
 
-    $.when([questionService.initialize(), answerService.initialize(), wageService.initialize(), definitionService.initialize(), noteService.initialize()]).done(function() {
+    $.when(questionService.initialize(), answerService.initialize(), wageService.initialize(), definitionService.initialize(), noteService.initialize()).done(function() {
+      console.log("In callback");
       router.addRoute('', function() {
           slider.slidePage(new HomeView(answerService).render().$el);
       });
@@ -36,6 +37,7 @@
 
       router.addRoute('question/:id', function(id) {
           questionService.findById(id).done(function(question) {
+            console.log("Question: " + question);
             slider.slidePage(new QuestionView(question, answerService, definitionService).render().$el);
           });
       });

@@ -3,16 +3,23 @@ var QuestionService = function() {
     this.initialize = function() {
         // No Initialization required
         var deferred = $.Deferred();
-        deferred.resolve();
+
+        var successCallback = function(questions) {
+          console.log("Resolving");
+          this.questions = questions;
+          deferred.resolve();
+        }
+
+        $.getJSON("http://minimum-wage-service.herokuapp.com/api/v1/survey/question", successCallback.bind(this));
         return deferred.promise();
     }
 
     this.findById = function(id) {
         var deferred = $.Deferred();
         var question = null;
-        var l = questions.length;
+        var l = this.questions.length;
         for (var i=0; i < l; i++) {
-            if (questions[i].id == id) {
+            if (this.questions[i].id == id) {
                 question = questions[i];
                 break;
             }
@@ -35,12 +42,12 @@ var QuestionService = function() {
           {"next": "#in-seattle-determination/top-50", "text": "Choose From Top 50 Employers In The State"},
           {"next": "#in-seattle-determination/map", "text": "Indicate Where You Work On A Map"},
         ]},
-        {"id": "number-employees", "summary":"Number of Employees", "prompt":"How many people work at your employer across the USA?", choices:[
-          {"next": "#question/health-insurance", "value": "1-500", "text": "1 - 500"},
-          {"next": "#question/medical-benefits", "value": ">500", "text": "Over 500"},
+        {"id": "number-employees", "summary":"Number of Employees", "prompt":"Does your employer have more than 500 employees in total, across the country?", choices:[
+          {"next": "#question/medical-benefits", "value": ">500", "text": "Yes"},
+          {"next": "#question/health-insurance", "value": "1-500", "text": "No"},
           {"next": "#question/big-national-chain", "value": "", "text": "I Don't Know"}
         ]},
-        {"id": "big-national-chain", "summary":"Big, National Chain", "prompt":"Do you work at a large or national chain or franchise?", choices:[
+        {"id": "big-national-chain", "summary":"Large Corporation or Franchise", "prompt":"Is your employer a large corporation or franchise, or a national chain?", choices:[
           {"next": "#note/big-national-chain-assumption", "value": "yes", "text": "Yes"},
           {"next": "#question/methods-for-determining-employee-count", "value": "no", "text": "No"},
           {"next": "#question/methods-for-determining-employee-count", "value": "", "text": "I Don't Know"}
