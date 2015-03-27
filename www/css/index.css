@@ -77,6 +77,10 @@ body {
   color: rgb(22,70,49);
 }
 
+.page {
+  overflow-y: scroll;
+}
+
 .title {
   color: rgb(22,70,49);
 }
