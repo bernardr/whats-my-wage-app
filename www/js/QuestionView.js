@@ -3,7 +3,6 @@ var QuestionView = function(question, answerService, definitionService) {
 
   this.initialize = function() {
       this.$el = $('<div/>');
-      definitionsView = new DefinitionsView(definitionService);
       this.$el.on('click', '.answer', this.saveAnswer);
       this.render();
   };
@@ -17,7 +16,6 @@ var QuestionView = function(question, answerService, definitionService) {
 
   this.render = function() {
       this.$el.html(this.template(question));
-      $('.definitions', this.$el).html(definitionsView.$el);
       return this;
   };
 

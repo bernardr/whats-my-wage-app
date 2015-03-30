@@ -40,7 +40,7 @@ var NoteService = function() {
           "id": "minimum-compensation",
           "title":"Minimum Compensation",
           "explanation": ["For example, let's say that your minimum wage is: $10/hr.",
-            "Your employer has to make sure that your tips and/or their contribution to your health care benefits add up to: $11/hr in total.",
+            "Your employer has to make sure that your tips and/or their contribution to your health care benefits add up to the minimum compensation of the minimum wage if these things are not provided: $11/hr in total.",
             "This consideration of tips and benefits is only temporary and will phase out over the next few years as wages keep rising."],
           "ordinance": {
             "section":"B",

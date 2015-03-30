@@ -5,8 +5,17 @@
     HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
     QuestionView.prototype.template = Handlebars.compile($("#question-tpl").html());
     ResultView.prototype.template = Handlebars.compile($("#result-tpl").html());
-    DefinitionsView.prototype.template = Handlebars.compile($('#definitions-tpl').html());
     NoteView.prototype.template = Handlebars.compile($('#note-tpl').html());
+    WageTheftView.prototype.template = Handlebars.compile($('#wage-theft-tpl').html());
+    AtWorkView.prototype.template = Handlebars.compile($('#in-seattle-determination-at-work-tpl').html());
+    AddressInSeattleView.prototype.template = Handlebars.compile($('#in-seattle-determination-address-tpl').html());
+    ContactUsView.prototype.template = Handlebars.compile($('#contact-us-tpl').html());
+    EmployerSizeAddressView.prototype.template = Handlebars.compile($('#employer-size-determination-address-tpl').html());
+    EmployerSizeNameView.prototype.template = Handlebars.compile($('#employer-size-determination-name-tpl').html());
+    ThanksView.prototype.template = Handlebars.compile($('#thanks-tpl').html());
+
+    Handlebars.registerPartial("contact-us-bar", $("#contact-us-bar-partial").html());
+    Handlebars.registerPartial("header-bar", $("#header-bar-partial").html());
 
     var slider = new PageSlider($('body'));
 
@@ -15,11 +24,15 @@
     var wageService = new WageService();
     var definitionService = new DefinitionService();
     var noteService = new NoteService();
+    var wageTheftReportService = new WageTheftReportService();
 
-    $.when(questionService.initialize(), answerService.initialize(), wageService.initialize(), definitionService.initialize(), noteService.initialize()).done(function() {
-      console.log("In callback");
+    $.when(questionService.initialize(), answerService.initialize(), wageService.initialize(), definitionService.initialize(), noteService.initialize(), wageTheftReportService.initialize()).done(function() {
       router.addRoute('', function() {
           slider.slidePage(new HomeView(answerService).render().$el);
+      });
+
+      router.addRoute('report-it', function() {
+          slider.slidePage(new WageTheftView(wageTheftReportService).render().$el);
       });
 
       router.addRoute('results', function() {
@@ -59,6 +72,31 @@
             });
           });
       });
+
+      router.addRoute('in-seattle-determination/:method', function(method) {
+        if(method == "at-work"){
+          slider.slidePage(new AtWorkView(answerService).render().$el);
+        } else {
+          slider.slidePage(new AddressInSeattleView(answerService).render().$el);
+        }
+      });
+
+      router.addRoute('employer-size-determination/:method', function(method) {
+        if(method == "address"){
+          slider.slidePage(new EmployerSizeAddressView(answerService).render().$el);
+        } else {
+          slider.slidePage(new EmployerSizeNameView(answerService).render().$el);
+        }
+      });
+
+      router.addRoute('contact-us', function(method) {
+        slider.slidePage(new ContactUsView().render().$el);
+      });
+
+      router.addRoute('thanks', function(method) {
+        slider.slidePage(new ThanksView().render().$el);
+      });
+
 
       router.start();
     });

@@ -13,6 +13,22 @@
     <link href="css/index.css" rel="stylesheet">
 </head>
 <body>
+  <script id="header-bar-partial" type="text/template">
+    <header class="bar bar-nav">
+        <h1 class="title">{{title}}</h1>
+        <a href="#" class="icon icon-refresh pull-right"></a>
+    </header>
+  </script>
+
+  <script id="contact-us-bar-partial" type="text/template">
+    <div class="bar bar-standard bar-footer-secondary">
+      Need help? Have questions or comments? Feedback? Want to get involved?
+    </div>
+    <div class="bar bar-standard bar-footer contact-us-button-footer">
+      <a href="#contact-us" class="btn btn-contrast">Contact Working Washington</button>
+    </div>
+  </script>
+
   <script id="home-tpl" type="text/template">
     <div class="content-padded">
       <h1 class="center app-title">What's My Wage?</h1>
@@ -31,6 +47,8 @@
       <a href="#question/work-seattle" class="btn btn-block start-survey">Start Survey</a>
       <a href="http://whatsmywage.org/report" class="btn btn-block">Report Employer Size</a>
       <a href="https://www.municode.com/library/wa/seattle/codes/municipal_code?nodeId=TIT14HURI_CH14.19MIWAMICORAEMPEWOSE" class="btn btn-block btn-contrast">Full Text of the Ordinance</a>
+      <h5 class="center">Need help? Have questions or comments? Feedback? Want to get involved?</h5>
+      <a href="#contact-us" class="btn btn-contrast btn-block">Contact Working Washington</a>
       <h5 class="center">Presented By:</h5>
       <a href="http://workingwa.org"><img class="working-wa-logo center" src="img/working-wa-logo.png"></img></a>
     </div>
@@ -58,6 +76,7 @@
         </div>
       </div>
     </div>
+    {{> contact-us-bar}}
   </script>
 
   <script id="result-tpl" type="text/template">
@@ -76,12 +95,12 @@
             </li>
             {{/each}}
         </ul>
-        <div class="center question-prompt">Are you making less than this per hour? You may be a victim of wage theft. Please take action and:</div>
-        <a href="http://www.seattle.gov/civilrights/labor-standards/wage-theft" class="btn btn-block btn-negative">Report It!</a>
+        <a href="#report-it" class="btn btn-block btn-negative">Not getting paid this much?</a>
         <div class="center question-prompt">Further Reading:</div>
         <a href="https://www.municode.com/library/wa/seattle/codes/municipal_code?nodeId=TIT14HURI_CH14.19MIWAMICORAEMPEWOSE" class="btn btn-block btn-contrast">Full Text of the Ordinance</a>
         <a href="http://www.seattle.gov/civilrights/labor-standards" class="btn btn-block btn-contrast">Office of Labor Standards</a>
     </div>
+    {{> contact-us-bar}}
   </script>
 
   <script id="note-tpl" type="text/template">
@@ -107,22 +126,140 @@
       <div class="center question-prompt">Further questions? Check out section {{ordinance.section}} of:</div>
       <a href="{{ordinance.href}}" class="btn btn-block btn-contrast">This Part of The Full Ordinance</a>
     </div>
+    {{> contact-us-bar}}
   </script>
 
-  <script id="definitions-tpl" type="text/template">
-    {{#each this}}
-    <div id="{{id}}" class="modal">
-      <header class="bar bar-nav">
-        <a class="icon icon-close pull-right" href="#{{id}}"></a>
-        <h1 class="title">{{text}}</h1>
-      </header>
-
-      <div class="content">
-        <p class="content-padded">{{text}}</p>
+  <script id="employer-size-determination-address-tpl" type="text/template">
+    {{> header-bar}}
+    <div class="content content-padded">
+      <h4>What is the address of your workplace?</h4>
+      <input id="employer-street-address" name="employer[address][street]" type="text" placeholder="Street Address"></input>
+      <input id="employer-zip-code" name="employer[address][zip]" type="number" placeholder="Zip Code"></input>
+      <h4>How many employees does my employer have?</h4>
+      <button class="btn btn-block btn-contrast query">Find out</button>
+      <div class="result-display">
+        <h4>Your employer has:</h4>
+        <h3 class="result">Please wait<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</h3>
+        <a href="#question/medical-benefits" class="btn btn-block btn-contrast hidden">Continue Survey</a>
       </div>
     </div>
-    {{/each}}
+    {{> contact-us-bar}}
   </script>
+
+  <script id="employer-size-determination-name-tpl" type="text/template">
+    {{> header-bar}}
+    <div class="content content-padded">
+      <h4>What is the name of your employer?</h4>
+      <input id="employer-name" name="employer[name]" type="text" placeholder="Business Name"></input>
+      <h4>How many employees does my employer have?</h4>
+      <button class="btn btn-block btn-contrast query">Find out</button>
+      <div class="result-display">
+        <h4>Your employer has:</h4>
+        <h3 class="result">Please wait<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</h3>
+        <a href="#question/medical-benefits" class="btn btn-block btn-contrast hidden">Continue Survey</a>
+      </div>
+    </div>
+    {{> contact-us-bar}}
+  </script>
+
+  <script id="in-seattle-determination-at-work-tpl" type="text/template">
+    <header class="bar bar-nav">
+        <h1 class="title">In Seattle?</h1>
+        <a href="#" class="icon icon-refresh pull-right"></a>
+    </header>
+    <div class="content content-padded">
+      <h4>Your current location and workplace are:</h4>
+      <h3 class="result">Please wait<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</h3>
+      <a href="#question/number-employees" class="btn btn-block btn-contrast hidden">Continue Survey</a>
+    </div>
+    {{> contact-us-bar}}
+  </script>
+
+  <script id="in-seattle-determination-address-tpl" type="text/template">
+    <header class="bar bar-nav">
+        <h1 class="title">In Seattle?</h1>
+        <a href="#" class="icon icon-refresh pull-right"></a>
+    </header>
+    <div class="content content-padded">
+      <h4>What is the address of your workplace?</h4>
+      <input id="employer-street-address" name="employer[address][street]" type="text" placeholder="Street Address"></input>
+      <input id="employer-zip-code" name="employer[address][zip]" type="number" placeholder="Zip Code"></input>
+      <button class="btn btn-block btn-contrast query-address">Is that located in Seattle?</button>
+      <div class="in-seattle-result-display">
+        <h4>Your workplace is:</h4>
+        <h3 class="in-seattle-result">Please wait<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</h3>
+        <a href="#question/number-employees" class="btn btn-block btn-contrast hidden">Continue Survey</a>
+      </div>
+    </div>
+    {{> contact-us-bar}}
+  </script>
+
+  <script id="wage-theft-tpl" type="text/template">
+    <header class="bar bar-nav">
+        <h1 class="title">Wage Theft</h1>
+        <a href="#" class="icon icon-refresh pull-right"></a>
+    </header>
+    <div class="content">
+      <p>Are you getting paid less than what you think you’re legally owed?</p>
+
+      <form id="wage-theft-report">
+        <h4>Tell us who you think is not paying you enough:</h4>
+        <input id="employer-name" name="employer[name]" type="text" placeholder="Name of Business"></input>
+
+        <h4>If you want us to follow up with you, please provide contact information:</h4>
+        <input id="employee-name" name="employee[name]" type="text" placeholder="Name"></input>
+        <input id="employee-email" name="employee[email]" type="email" placeholder="Email"></input>
+        <input id="employee-phone" name="employee[phone]" type="tel" placeholder="Phone Number"></input>
+
+        <div class="disclaimer">
+          This message will be sent confidentially to Working Washington, and 
+          we’ll follow up with you as soon as possible. We won’t share your 
+          personal information with your employer, law enforcement, the City 
+          of Seattle, or anyone else unless you give us your permission.
+        </div>
+
+        <a href="#thanks" class="btn btn-block btn-contrast btn-report">Report To Working WA</a>
+
+        <h4>
+          Ready to report your case to the City of Seattle? Please contact the 
+          city’s Office of Labor Standards Enforcement.
+        </h4>
+        <a href="http://www.seattle.gov/civilrights/labor-standards/minimum-wage" class="btn btn-block btn-contrast">Contact Them Here</a>
+
+      </form>
+    </div>
+  </script>
+
+  <script id="contact-us-tpl" type="text/template">
+    {{> header-bar}}
+    <div class="content">
+      <form id="contact-us">
+        <input id="employee-name" name="employee[name]" type="text" placeholder="Name"></input>
+        <input id="employee-email" name="employee[email]" type="email" placeholder="Email"></input>
+        <input id="employee-phone" name="employee[phone]" type="tel" placeholder="Phone Number"></input>
+        <input id="employer-name" name="employer[name]" type="text" placeholder="Name of Business"></input>
+
+        <textarea id="comments" placeholder="Comments"></textarea>
+
+        <div class="disclaimer">
+          This information will be sent confidentially to Working Washington, and 
+          we’ll follow up with you as soon as possible. We won’t share your 
+          personal information with your employer, law enforcement, the City 
+          of Seattle, or anyone else unless you give us your permission.
+        </div>
+
+        <a href="#thanks" class="btn btn-block btn-contrast">Send</a>
+      </form>
+    </div>
+  </script>
+
+  <script id="thanks-tpl" type="text/template">
+    {{> header-bar}}
+    <div class="content content-padded">
+      <h3>Thank for so much for contacting us!</h3>
+      <h4>You are part of the solution!</h4>
+      <a href="#" class="btn btn-block btn-contrast">Return To Home Screen</a>
+    </div>
 
   <script src="cordova.js"></script>
   <script src="lib/jquery.js"></script>
@@ -139,11 +276,18 @@
   <script src="js/services/memory/WageService.js"></script>
   <script src="js/services/memory/DefinitionService.js"></script>
   <script src="js/services/memory/NoteService.js"></script>
+  <script src="js/services/json/WageTheftReportService.js"></script>
   <script src="js/NoteView.js"></script>
-  <script src="js/DefinitionsView.js"></script>
   <script src="js/HomeView.js"></script>
   <script src="js/QuestionView.js"></script>
   <script src="js/ResultView.js"></script>
+  <script src="js/WageTheftView.js"></script>
+  <script src="js/AtWorkView.js"></script>
+  <script src="js/AddressInSeattleView.js"></script>
+  <script src="js/ContactUsView.js"></script>
+  <script src="js/EmployerSizeNameView.js"></script>
+  <script src="js/EmployerSizeAddressView.js"></script>
+  <script src="js/ThanksView.js"></script>
   <script src="js/app.js"></script>
 
 </body>
