@@ -1,4 +1,4 @@
-var ResultView = function(wageIntervals) {
+var ResultView = function(result) {
 
   this.initialize = function() {
       this.$el = $('<div/>');
@@ -6,25 +6,37 @@ var ResultView = function(wageIntervals) {
       this.$el.on('click', '.btn-see-more', this.revealHidden);
 
       this.render();
-
-      //  collapsedHeight: 130,
-      //  moreLink: "<button class=\"btn btn-primary btn-see-more\">See future wages...</button>"
-      //});
   };
 
   this.render = function() {
       var pretty = [];
-      for (interval in wageIntervals) {
-          var wage = accounting.formatMoney(wageIntervals[interval].wage);
-          var range = wageIntervals[interval].time_range.format({implicitYear: false});
+      for (interval in result.intervals) {
+          var wage = accounting.formatMoney(result.intervals[interval].wage);
+          var range = result.intervals[interval].time_range.format({implicitYear: false});
 
-          pretty.push({wage: wage, range: range, raw: wageIntervals[interval]});
+          var compensation;
+
+          if( typeof result.intervals[interval].compensation != "undefined" ) {
+            compensation = accounting.formatMoney(result.intervals[interval].compensation);
+          }
+          pretty.push({
+            wage: wage,
+            compensation: compensation,
+            range: range,
+            raw: result.intervals[interval]
+          });
       }
 
       pretty[0].range = "Now - " + pretty[0].raw.time_range.end.format("MMM Do, YYYY")
       pretty[pretty.length - 1].range = "After " + pretty[pretty.length - 1].raw.time_range.start.format("MMM Do, YYYY")
 
-      this.$el.html(this.template(pretty));
+      var input = {
+        current: pretty[0],
+        future: pretty.slice(1),
+        state: result.state
+      };
+
+      this.$el.html(this.template(input));
       return this;
   };
 

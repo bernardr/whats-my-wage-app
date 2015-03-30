@@ -37,10 +37,10 @@
 
       router.addRoute('results', function() {
         answerService.getAnswers().done(function(answers) {
-          wageService.findByAnswers(answers).done(function(wageIntervals) {
-            slider.slidePage(new ResultView(wageIntervals).render().$el);
-            $('.results-table').readmore({
-                collapsedHeight: 130,
+          wageService.findByAnswers(answers).done(function(result) {
+            slider.slidePage(new ResultView(result).render().$el);
+            $('.result-view').readmore({
+                collapsedHeight: $(".current-wage-view").outerHeight(),
                 moreLink: "<button class=\"btn btn-block btn-primary btn-contrast\">See more future wages...</button>",
                 lessLink: "<button class=\"btn btn-block btn-primary btn-contrast\">Hide</button>"
             });

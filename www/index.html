@@ -84,21 +84,54 @@
         <h1 class="title">What should your hourly wage be?</h1>
         <a href="#" class="icon icon-refresh pull-right"></a>
     </header>
-    <div class="content">
-        <ul class="table-view results-table">
-            {{#each this}}
-            <li class="table-view-cell result-row">
-                <div>
-                    {{wage}}
-                    <p>{{range}}</p>
+    <div class="content content-padded">
+        {{#if state}}
+          <h3>{{current.wage}}</h3>
+
+          <div class="disclaimer">
+            <p>The statewide minimum wage in Washington is just {{current.wage}} an hour.</p>
+
+            <p>(Of course, many workers in SeaTac are covered by SeaTac Proposition 1, the landmark $15/hour initiative they won at the ballot box in 2013.)</p>
+
+            <p>Feel like that’s not enough? <a href="#contact-us" class="btn btn-contrast">Join the fight</a></p>
+          </div>
+        {{else}}
+          <div class="result-view">
+            <div class="current-wage-view">
+              {{#if current.compensation}}
+                <h4>Based on this information, {{#if employer.name}}{{this}}{{else}}your employer{{/if}} has to do two things:<h4>
+                <h3>Your minimum wage has to be at least {{current.wage}}/hour.</h3>
+                <h3>Your minimum compensation has to be at least {{current.compensation}}/hour.</h3>
+                <div class="disclaimer">
+                  <p>Minimum compensation is the sum of your wage, any tips you receive, and the cost to your employer of providing you healthcare benefits.</p>
+                  <p>Your employer cannot pay less than {{current.wage}}/hour in wages, regardless of tips or benefits.</p>
                 </div>
-            </li>
-            {{/each}}
-        </ul>
-        <a href="#report-it" class="btn btn-block btn-negative">Not getting paid this much?</a>
-        <div class="center question-prompt">Further Reading:</div>
-        <a href="https://www.municode.com/library/wa/seattle/codes/municipal_code?nodeId=TIT14HURI_CH14.19MIWAMICORAEMPEWOSE" class="btn btn-block btn-contrast">Full Text of the Ordinance</a>
-        <a href="http://www.seattle.gov/civilrights/labor-standards" class="btn btn-block btn-contrast">Office of Labor Standards</a>
+              {{else}}
+                <h4>Based on this information, your minimum wage at {{#if employer.name}}{{this}}{{else}}your employer{{/if}} is:<h4>
+                <h3>{{current.wage}}</h3>
+              {{/if}}
+            </div>
+            <ul class="table-view results-table">
+                {{#each future}}
+                <li class="table-view-cell result-row">
+                    <div>
+                        {{#if this.compensation}}
+                          <div><b>Wage:</b> {{wage}}</div>
+                          <div><b>Compensation:</b> {{compensation}}</div>
+                        {{else}}
+                          {{wage}}
+                        {{/if}}
+                        <p>{{range}}</p>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+          </div>
+        {{/if}}
+      <a href="#report-it" class="btn btn-block btn-negative">Not getting paid this much?</a>
+      <div class="center question-prompt">Further Reading:</div>
+      <a href="https://www.municode.com/library/wa/seattle/codes/municipal_code?nodeId=TIT14HURI_CH14.19MIWAMICORAEMPEWOSE" class="btn btn-block btn-contrast">Full Text of the Ordinance</a>
+      <a href="http://www.seattle.gov/civilrights/labor-standards" class="btn btn-block btn-contrast">Office of Labor Standards</a>
     </div>
     {{> contact-us-bar}}
   </script>
