@@ -207,3 +207,8 @@ div.disclaimer {
   font-style: italic;
   padding-bottom: 10px;
 }
+
+.current-wage-view {
+ padding-top: 5px;
+ padding-bottom: 5px;
+}

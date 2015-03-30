@@ -41,7 +41,7 @@
             slider.slidePage(new ResultView(result).render().$el);
             $('.result-view').readmore({
                 collapsedHeight: $(".current-wage-view").outerHeight(),
-                moreLink: "<button class=\"btn btn-block btn-primary btn-contrast\">See more future wages...</button>",
+                moreLink: "<button class=\"btn btn-block btn-primary btn-contrast\">See future wages...</button>",
                 lessLink: "<button class=\"btn btn-block btn-primary btn-contrast\">Hide</button>"
             });
           });
