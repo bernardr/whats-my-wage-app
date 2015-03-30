@@ -28,7 +28,6 @@ var ResultView = function(result) {
       }
 
       pretty[0].range = "Now - " + pretty[0].raw.time_range.end.format("MMM Do, YYYY")
-      pretty[pretty.length - 1].range = "After " + pretty[pretty.length - 1].raw.time_range.start.format("MMM Do, YYYY")
 
       var input = {
         current: pretty[0],
