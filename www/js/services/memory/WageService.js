@@ -23,7 +23,7 @@ var WageService = function() {
             schedule = "B";
           }
         } else {
-          if(answers["health-insurance"] == "yes" || answers["tips"] == "yes") {
+          if(answers["health-insurance"] == "no" && answers["tips"] == "no") {
             schedule = "C";
           } else {
             schedule = "D";
