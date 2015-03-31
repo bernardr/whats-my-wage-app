@@ -16,7 +16,7 @@ var WageService = function() {
       var schedule;
 
       if(answers["work-seattle"] == "yes") {
-        if(answers["number-employees"] == ">500") {
+        if(answers["number-employees"] == ">500" || answers["big-national-chain"] == "yes") {
           if(answers["medical-benefits"] == "no") {
             schedule = "A";
           } else {
