@@ -61,10 +61,6 @@
       router.addRoute('note/:id', function(id) {
           noteService.findById(id).done(function(note) {
             answerService.getAnswers().done(function(answers) {
-              if (note.skip(answers)) {
-                return window.location = note.next;
-              }
-
               slider.slidePage(new NoteView(note).render().$el);
 
               $('.ordinance-info').readmore({

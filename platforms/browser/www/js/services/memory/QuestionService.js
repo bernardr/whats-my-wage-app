@@ -5,12 +5,11 @@ var QuestionService = function() {
         var deferred = $.Deferred();
 
         var successCallback = function(questions) {
-          console.log("Resolving");
           this.questions = questions;
           deferred.resolve();
         }
 
-        $.getJSON("http://whats-my-wage-server.herokuapp.com/api/v1/survey/question", successCallback.bind(this));
+        $.getJSON("http://whatsmywage.org/api/v1/survey/question", successCallback.bind(this));
         return deferred.promise();
     }
 
