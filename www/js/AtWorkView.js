@@ -3,15 +3,6 @@ var AtWorkView = function (answerService) {
       // Define a div wrapper for the view (used to attach events)
       this.$el = $('<div/>');
 
-      onGeolocate = function(loc) {
-
-        answerService.saveAnswer("work-seattle","yes");
-
-        var resultDiv = $(this.$el.find(".result")).html("In Seattle");
-        var continueButton = $(this.$el.find("a.btn.hidden"));
-        continueButton.removeClass("hidden");
-      }
-
       var geolocationDeferred = $.Deferred();
 
       navigator.geolocation.getCurrentPosition(function(loc) {
@@ -33,17 +24,32 @@ var AtWorkView = function (answerService) {
           }
       });
 
-      $.when(geolocationDeferred, loadCityLimitsDeferred).done( function(loc, cityLimits) {
+      var onGeolocateAndLoad = function(loc, cityLimits) {
         var ww = Wherewolf();
-        ww.add("city-limits", cityLimits);
+        ww.add("Seattle", cityLimits);
 
-        console.log(ww.find([loc.coords.latitude,loc.coords.longitude], {wholeFeature: true}));
-      }).fail( function(err1, err2) {
-        console.log(err1);
-        console.log(err2);
-      });
+        if(ww.find([loc.coords.longitude,loc.coords.latitude])["Seattle"]) {
+          answerService.saveAnswer("work-seattle","yes");
 
-      setTimeout(onGeolocate.bind(this), 1000);
+          var resultDiv = $(this.$el.find(".result")).html("In Seattle");
+          var continueButton = $(this.$el.find("a.btn.hidden"));
+          continueButton.attr("href","#question/number-employees");
+          continueButton.removeClass("hidden");
+        } else {
+          answerService.saveAnswer("work-seattle","no");
+
+          var resultDiv = $(this.$el.find(".result")).html("Not In Seattle");
+          var continueButton = $(this.$el.find("a.btn.hidden"));
+          continueButton.attr("href","#results");
+          continueButton.removeClass("hidden");
+        }
+      }
+
+      var onFailedGeolocateOrLoad = function(err1, err2) {
+        $(this.$el.find(".result")).html("Unable to Determine");
+      };
+
+      var whenGeolocatedAndLoaded = $.when(geolocationDeferred, loadCityLimitsDeferred).done(onGeolocateAndLoad.bind(this)).fail( onFailedGeolocateOrLoad.bind(this));
 
       this.render();
   };

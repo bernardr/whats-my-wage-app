@@ -11,6 +11,7 @@
     <link href="assets/css/styles.css" rel="stylesheet">
     <link href="assets/css/pageslider.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
     <title>What's My Wage?</title>
 </head>
@@ -217,12 +218,11 @@
     </header>
     <div class="content content-padded">
       <h4>What is the address of your workplace?</h4>
-      <input id="employer-street-address" name="employer[address][street]" type="text" placeholder="Street Address"></input>
-      <input id="employer-zip-code" name="employer[address][zip]" type="number" placeholder="Zip Code"></input>
-      <button class="btn btn-block btn-contrast query-address">Is that located in Seattle?</button>
-      <div class="in-seattle-result-display">
+      <input id="employer-address" name="employer[address]" type="text" placeholder="Address"></input>
+      <button class="btn btn-block btn-contrast query">Is that located in Seattle?</button>
+      <div class="result-display">
         <h4>Your workplace is:</h4>
-        <h3 class="in-seattle-result">Please wait<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</h3>
+        <h3 class="result">Please wait<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</h3>
         <a href="#question/number-employees" class="btn btn-block btn-contrast hidden">Continue Survey</a>
       </div>
     </div>
