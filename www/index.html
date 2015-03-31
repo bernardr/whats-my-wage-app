@@ -193,7 +193,11 @@
       <div class="result-display">
         <h4>Your employer has:</h4>
         <h3 class="result">Please wait<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</h3>
-        <a href="#question/medical-benefits" class="btn btn-block btn-contrast hidden">Continue Survey</a>
+        <a href="#question/medical-benefits" class="btn btn-block btn-contrast btn-continue hidden">Continue Survey</a>
+        <div class="report-it-message hidden">
+          <h4>Please find out and:</h4>
+          <a href="http://whatsmywage.org/report" class="btn btn-block btn-contrast btn-report">Report It To Us</a>
+        </div>
       </div>
     </div>
     {{> contact-us-bar}}
@@ -357,6 +361,7 @@
   <script src="js/services/memory/DefinitionService.js"></script>
   <script src="js/services/memory/NoteService.js"></script>
   <script src="js/services/json/WageTheftReportService.js"></script>
+  <script src="js/services/json/EmployerSizeService.js"></script>
   <script src="js/NoteView.js"></script>
   <script src="js/HomeView.js"></script>
   <script src="js/QuestionView.js"></script>

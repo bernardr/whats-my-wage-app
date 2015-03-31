@@ -26,8 +26,9 @@
     var definitionService = new DefinitionService();
     var noteService = new NoteService();
     var wageTheftReportService = new WageTheftReportService();
+    var employerSizeService = new EmployerSizeService();
 
-    $.when(questionService.initialize(), answerService.initialize(), wageService.initialize(), definitionService.initialize(), noteService.initialize(), wageTheftReportService.initialize()).done(function() {
+    $.when(questionService.initialize(), answerService.initialize(), wageService.initialize(), definitionService.initialize(), noteService.initialize(), wageTheftReportService.initialize(), employerSizeService.initialize()).done(function() {
       router.addRoute('', function() {
           slider.slidePage(new HomeView(answerService).render().$el);
       });
@@ -84,9 +85,9 @@
 
       router.addRoute('employer-size-determination/:method', function(method) {
         if(method == "address"){
-          slider.slidePage(new EmployerSizeAddressView(answerService).render().$el);
+          slider.slidePage(new EmployerSizeAddressView(employerSizeService, answerService).render().$el);
         } else {
-          slider.slidePage(new EmployerSizeNameView(answerService).render().$el);
+          slider.slidePage(new EmployerSizeNameView(employerSizeService, answerService).render().$el);
         }
       });
 
