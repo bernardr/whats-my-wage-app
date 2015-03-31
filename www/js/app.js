@@ -13,6 +13,7 @@
     EmployerSizeAddressView.prototype.template = Handlebars.compile($('#employer-size-determination-address-tpl').html());
     EmployerSizeNameView.prototype.template = Handlebars.compile($('#employer-size-determination-name-tpl').html());
     ThanksView.prototype.template = Handlebars.compile($('#thanks-tpl').html());
+    PrivacyPolicyView.prototype.template = Handlebars.compile($('#privacy-policy-tpl').html());
 
     Handlebars.registerPartial("contact-us-bar", $("#contact-us-bar-partial").html());
     Handlebars.registerPartial("header-bar", $("#header-bar-partial").html());
@@ -89,12 +90,16 @@
         }
       });
 
-      router.addRoute('contact-us', function(method) {
+      router.addRoute('contact-us', function() {
         slider.slidePage(new ContactUsView().render().$el);
       });
 
-      router.addRoute('thanks', function(method) {
+      router.addRoute('thanks', function() {
         slider.slidePage(new ThanksView().render().$el);
+      });
+
+      router.addRoute('privacy-policy', function() {
+        slider.slidePage(new PrivacyPolicyView().render().$el);
       });
 
 

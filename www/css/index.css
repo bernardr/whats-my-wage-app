@@ -212,3 +212,12 @@ div.disclaimer {
  padding-top: 5px;
  padding-bottom: 5px;
 }
+
+.privacy-policy p, .privacy-policy li {
+  text-align: left;
+  font-size: 14px;
+}
+
+.privacy-policy .effective-date {
+  font-style: italic;
+}
