@@ -26,6 +26,9 @@
         },
         "org.apache.cordova.statusbar": {
             "PACKAGE_NAME": "org.workingwa.min_wage_calc"
+        },
+        "org.apache.cordova.geolocation": {
+            "PACKAGE_NAME": "org.workingwa.min_wage_calc"
         }
     },
     "dependent_plugins": {}
