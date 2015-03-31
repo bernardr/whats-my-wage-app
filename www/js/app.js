@@ -26,9 +26,10 @@
     var definitionService = new DefinitionService();
     var noteService = new NoteService();
     var wageTheftReportService = new WageTheftReportService();
+    var contactUsService = new ContactUsService();
     var employerSizeService = new EmployerSizeService();
 
-    $.when(questionService.initialize(), answerService.initialize(), wageService.initialize(), definitionService.initialize(), noteService.initialize(), wageTheftReportService.initialize(), employerSizeService.initialize()).done(function() {
+    $.when(questionService.initialize(), answerService.initialize(), wageService.initialize(), definitionService.initialize(), noteService.initialize(), wageTheftReportService.initialize(), employerSizeService.initialize(), contactUsService.initialize()).done(function() {
       router.addRoute('', function() {
           slider.slidePage(new HomeView(answerService).render().$el);
       });
@@ -92,7 +93,7 @@
       });
 
       router.addRoute('contact-us', function() {
-        slider.slidePage(new ContactUsView().render().$el);
+        slider.slidePage(new ContactUsView(contactUsService).render().$el);
       });
 
       router.addRoute('thanks', function() {

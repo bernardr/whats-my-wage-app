@@ -2,17 +2,16 @@ var WageTheftView = function (wageTheftReportService) {
   this.initialize = function () {
       // Define a div wrapper for the view (used to attach events)
       this.$el = $('<div/>');
+
       this.render();
 
       this.$el.on('click','.btn-report', function(evt) {
-        //evt.preventDefault();
-        console.log("Clicking");
-        wageTheftReportService.submitReport({});
+        wageTheftReportService.submitReport($("#wage-theft-report").serializeObject());
       });
   };
 
   this.render = function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this.info));
     return this;
   };
 

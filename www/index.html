@@ -242,7 +242,7 @@
     <div class="content">
       <p>Are you getting paid less than what you think you’re legally owed?</p>
 
-      <form id="wage-theft-report">
+      <form id="wage-theft-report" action="http://whatsmywage.org/api/v1/wage_theft/report">
         <h4>Tell us who you think is not paying you enough:</h4>
         <input id="employer-name" name="employer[name]" type="text" placeholder="Name of Business"></input>
 
@@ -282,7 +282,7 @@
         <input id="employee-phone" name="employee[phone]" type="tel" placeholder="Phone Number"></input>
         <input id="employer-name" name="employer[name]" type="text" placeholder="Name of Business"></input>
 
-        <textarea id="comments" placeholder="Comments"></textarea>
+        <textarea id="comments" name="employee[comments]" placeholder="Comments"></textarea>
 
         <div class="disclaimer">
           This information will be sent confidentially to Working Washington, and 
@@ -294,7 +294,7 @@
           message and/or data rates may apply.
         </div>
 
-        <a href="#thanks" class="btn btn-block btn-contrast">Send</a>
+        <a href="#thanks" class="btn btn-block btn-contrast btn-send">Send</a>
       </form>
     </div>
   </script>
@@ -355,11 +355,13 @@
   <script src="lib/accounting.js"></script>
   <script src="lib/readmore.js"></script>
   <script src="lib/wherewolf.js"></script>
+  <script src="lib/jquery.serialize-object.min.js"></script>
   <script src="js/services/memory/QuestionService.js"></script>
   <script src="js/services/memory/AnswerService.js"></script>
   <script src="js/services/memory/WageService.js"></script>
   <script src="js/services/memory/DefinitionService.js"></script>
   <script src="js/services/memory/NoteService.js"></script>
+  <script src="js/services/json/ContactUsService.js"></script>
   <script src="js/services/json/WageTheftReportService.js"></script>
   <script src="js/services/json/EmployerSizeService.js"></script>
   <script src="js/NoteView.js"></script>

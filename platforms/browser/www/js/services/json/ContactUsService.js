@@ -1,11 +1,11 @@
-var WageTheftReportService = function() {
+var ContactUsService = function() {
 
     this.initialize = function() {
         // No Initialization required
         var deferred = $.Deferred();
 
         if(typeof url == "undefined") {
-          this.url = "http://whatsmywage.org/api/v1/wage_theft";
+          this.url = "http://whatsmywage.org/api/v1";
         } else {
           this.url = url;
         }
@@ -14,13 +14,13 @@ var WageTheftReportService = function() {
         return deferred.promise();
     }
 
-    this.submitReport = function(report) {
+    this.submitContactUs = function(contactInfo) {
       var deferred = $.Deferred();
 
-      $.ajax(this.url + "/report", {
+      $.ajax(this.url + "/contact_us", {
         method: "POST",
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(report),
+        data: JSON.stringify(contactInfo),
         dataType: "json",
         processData: false,
         success: function(data) {
