@@ -32,6 +32,18 @@
     </div>
   </script>
 
+  <script id="disclaimer-partial" type="text/template">
+    <div class="disclaimer">
+      This message will be sent confidentially to Working Washington, and 
+      we’ll follow up with you as soon as possible. We won’t voluntarily share your 
+      personal information with your employer, law enforcement, the City 
+      of Seattle, or anyone else unless you give us your permission.
+      By submitting your phone number and email address, you authorize us 
+      to contact you via phone call, text message, and/or email. Standard 
+      message and/or data rates may apply.
+    </div>
+  </script>
+
   <script id="home-tpl" type="text/template">
     <div class="content-padded">
       <h1 class="center app-title">What's My Wage?</h1>
@@ -223,7 +235,7 @@
     </header>
     <div class="content content-padded">
       <h4>What is the address of your workplace?</h4>
-      <input id="employer-address" name="employer[address]" type="text" placeholder="Address"></input>
+      <input id="employer-address" name="employer[address]" type="text" placeholder="Address (e.g. 100 Union Street, 98104)"></input>
       <button class="btn btn-block btn-contrast query">Is that located in Seattle?</button>
       <div class="result-display">
         <h4>Your workplace is:</h4>
@@ -251,15 +263,7 @@
         <input id="employee-email" name="employee[email]" type="email" placeholder="Email"></input>
         <input id="employee-phone" name="employee[phone]" type="tel" placeholder="Phone Number"></input>
 
-        <div class="disclaimer">
-          This message will be sent confidentially to Working Washington, and 
-          we’ll follow up with you as soon as possible. We won’t share your 
-          personal information with your employer, law enforcement, the City 
-          of Seattle, or anyone else unless you give us your permission.
-          By submitting your phone number and email address, you authorize us 
-          to contact you via phone call, text message, and/or email. Standard 
-          message and/or data rates may apply.
-        </div>
+        {{>disclaimer}}
 
         <a href="#thanks" class="btn btn-block btn-contrast btn-report">Report To Working WA</a>
 
@@ -284,15 +288,7 @@
 
         <textarea id="comments" name="employee[comments]" placeholder="Comments"></textarea>
 
-        <div class="disclaimer">
-          This information will be sent confidentially to Working Washington, and 
-          we’ll follow up with you as soon as possible. We won’t share your 
-          personal information with your employer, law enforcement, the City 
-          of Seattle, or anyone else unless you give us your permission.
-          By submitting your phone number and email address, you authorize us 
-          to contact you via phone call, text message, and/or email. Standard 
-          message and/or data rates may apply.
-        </div>
+        {{>disclaimer}}
 
         <a href="#thanks" class="btn btn-block btn-contrast btn-send">Send</a>
       </form>

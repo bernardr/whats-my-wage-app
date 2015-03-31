@@ -17,6 +17,7 @@
 
     Handlebars.registerPartial("contact-us-bar", $("#contact-us-bar-partial").html());
     Handlebars.registerPartial("header-bar", $("#header-bar-partial").html());
+    Handlebars.registerPartial("disclaimer", $("#disclaimer-partial").html());
 
     var slider = new PageSlider($('body'));
 

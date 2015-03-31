@@ -12,7 +12,7 @@ var WageService = function() {
       var success = function(result) {
         for(var interval in result.intervals) {
           var current = result.intervals[interval];
-          current.time_range = moment(current.start).twix(current.end, {allDay: true}) 
+          current.time_range = moment(current.time_range.start).twix(current.time_range.end, {allDay: true});
         }
 
         deferred.resolve(result);
