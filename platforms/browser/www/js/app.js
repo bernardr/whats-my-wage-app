@@ -128,6 +128,8 @@
 
     FastClick.attach(document.body);
 
+    ga('send', 'pageview', location.pathname + location.hash);
+
     // Add per link tracking
     $(document.body).on('click', 'a', function(evt) {
       var match = jQuery(this).attr('href').match(/#\S+/);
