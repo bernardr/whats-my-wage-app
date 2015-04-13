@@ -128,9 +128,13 @@
 
     FastClick.attach(document.body);
 
+    $(document).ready(function(evt) {
+      ga('send', 'pageview', location.pathname + location.hash);
+    });
+
     // Add per link tracking
-    $('a').click(function(evt) {
-      var match = jQuery(this).attr('href').match(/#\S+/);
+    $(document.body).on('click', 'a', function(evt) {
+      var match = jQuery(this).attr('href').match(/#\S*/);
       ga('send', 'pageview', location.pathname + match[0]);
     });
 }());
